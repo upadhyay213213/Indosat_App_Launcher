@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_view_0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/indosat_widget_text_padding">
+
+    </android.support.v7.widget.LinearLayoutCompat>
+<!--
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/home_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:columnCount="4"
+    android:orientation="vertical"
+    android:stretchMode="columnWidth"
+    android:layout_gravity="center_horizontal">
+
+    <android.widget.Space
+        android:id="@+id/space1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</GridLayout>
+-->

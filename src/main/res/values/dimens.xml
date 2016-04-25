@@ -1,0 +1,21 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="app_icon_size">48dip</dimen>
+    <dimen name="grid_app_icon_size">78dip</dimen>
+    <dimen name="fragment_dot_size">7dp</dimen>
+
+    <dimen name="app_icon_img_size">48dp</dimen>
+    <dimen name="app_name_lable_size">55dp</dimen>
+
+    <dimen name="indosat_widget_width">260dp</dimen>
+    <dimen name="indosat_widget_height">180dp</dimen>
+
+    <dimen name="indosat_widget_margin">10dp</dimen>
+    <dimen name="indosat_widget_padding">8dp</dimen>
+    <dimen name="indosat_widget_text_padding">4dp</dimen>
+
+    <dimen name="widget_heading_text_size">20sp</dimen>
+    <dimen name="widget_app_names_text_size">10sp</dimen>
+</resources>

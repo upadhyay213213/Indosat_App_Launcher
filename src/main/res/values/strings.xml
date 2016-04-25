@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- HomeScreenMainActivity -->
+    <string name="home_title">Indosat Launcher</string>
+    <string name="show_all_apps">All</string>
+
+    <!-- HomeScreenMainActivity Menus -->
+    <string name="menu_wallpaper">Wallpaper</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_settings">Settings</string>
+
+    <!-- Wallpaper -->
+    <string name="wallpaper_instructions">Tap picture to set portrait wallpaper</string>
+
+    <string name="menu_insert_widget_label">Add Widget</string>
+    <string name="group_search">Search</string>
+
+    <!-- WidgetHost Strings-->
+    <string name="menu_remove_widget_label">Remove Widget</string>
+    <string name="no_widgets_popup">Add widgets first</string>
+    <string name="widget_removed_popup">The widget was removed!</string>
+    <string name="app_help">Touch menu to add/remove widgets.</string>
+
+    <string name="removeItem">Remove</string>
+
+    <string name="app_name">Indosat Apps</string>
+    <string name="action_settings">Settings</string>
+
+    <color name="text_color">#FFFFFF</color>
+
+    <string name="app1_name">Mycare</string>
+    <string name="app2_name">Dompetku</string>
+    <string name="app3_name">Spotify Music</string>
+    <string name="app4_name">iCloud</string>
+    <string name="app5_name">Cipika Store</string>
+    <string name="app6_name">BBM</string>
+    <string name="app7_name">Duel Otak</string>
+    <string name="app8_name">Facebook</string>
+
+</resources>
