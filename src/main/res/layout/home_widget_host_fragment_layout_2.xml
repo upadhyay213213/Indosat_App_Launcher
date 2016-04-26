@@ -8,6 +8,11 @@
     android:gravity="center_horizontal"
     android:padding="@dimen/indosat_widget_text_padding">
 
+    <com.tweaklauncher.lib.TweakDashboardView
+        android:id="@+id/dashboard_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
     </android.support.v7.widget.LinearLayoutCompat>
 <!--
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"

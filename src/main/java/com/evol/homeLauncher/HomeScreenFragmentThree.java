@@ -48,7 +48,7 @@ import java.util.TimerTask;
 /**
  * Created by katakam on 1/21/2016.
  */
-public class HomeScreenFragmentThree extends Fragment {
+public class HomeScreenFragmentThree extends HomeFragment {
 
     static final String TAG = "HomeScreenFragmentThree";
 
@@ -71,7 +71,7 @@ public class HomeScreenFragmentThree extends Fragment {
 
         HomeScreenFragmentThree currentFragment = new HomeScreenFragmentThree();
         Bundle b = new Bundle();
-        b.putInt("MSG", position);
+        b.putInt(INTENT_ITEM_POSITION, position);
         currentFragment.setArguments(b);
         return currentFragment;
     }
@@ -103,6 +103,8 @@ public class HomeScreenFragmentThree extends Fragment {
                 return false;
             }
         });
+
+        initDashboardViews(view);
     }
 
     private void addBroadcastReceiverForShortCut() {

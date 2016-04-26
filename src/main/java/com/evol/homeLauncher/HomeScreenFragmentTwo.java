@@ -46,7 +46,7 @@ import java.util.TimerTask;
 /**
  * Created by katakam on 1/21/2016.
  */
-public class HomeScreenFragmentTwo extends Fragment implements IndosatAppIntentReceiver.AppInstalledListener{
+public class HomeScreenFragmentTwo extends HomeFragment implements IndosatAppIntentReceiver.AppInstalledListener{
 
     static final String TAG = "HomeScreenFragmentTwo";
 
@@ -95,7 +95,7 @@ public class HomeScreenFragmentTwo extends Fragment implements IndosatAppIntentR
 
         currentFragment = new HomeScreenFragmentTwo();
         Bundle b = new Bundle();
-        b.putInt("MSG", position);
+        b.putInt(INTENT_ITEM_POSITION, position);
         currentFragment.setArguments(b);
         return currentFragment;
     }
@@ -167,6 +167,8 @@ public class HomeScreenFragmentTwo extends Fragment implements IndosatAppIntentR
                 return false;
             }
         });
+
+        initDashboardViews(view);
     }
 
     private void loadImageIcons() {

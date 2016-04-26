@@ -50,10 +50,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.evol.adapters.HomeScreenViewPagerAdapter;
 import com.evol.appUtils.AppConstants;
+import com.evol.launcher_lib.TweakDashboardView;
 import com.evol.promotionalApp.PromotionalAppSharedPreferences;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -65,11 +65,16 @@ import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
-public class HomeScreenMainActivity extends FragmentActivity implements View.OnClickListener {
+public class HomeScreenMainActivity
+        extends FragmentActivity
+        implements View.OnClickListener,
+        TweakDashboardView.IViewPagerCallbacks {
+
+
     /**
      * Tag used for logging errors.
      */
-    private static final String LOG_TAG = "HomeScreenMainActivity";
+    private static final String TAG = "HomeScreenMainActivity";
 
     /**
      * Keys during freeze/thaw.
@@ -236,8 +241,7 @@ public class HomeScreenMainActivity extends FragmentActivity implements View.OnC
     }
 
     private void loadHomeScreenFragmentPages() {
-        adapter = new HomeScreenViewPagerAdapter(getSupportFragmentManager(),HomeScreenMainActivity.this,
-                AppConstants.NUMBER_OF_HOME_SCREENS);
+        adapter = new HomeScreenViewPagerAdapter(getSupportFragmentManager(),HomeScreenMainActivity.this, AppConstants.NUMBER_OF_HOME_SCREENS);
         mHomeScreenViewPager = (ViewPager) findViewById(R.id.home_screen_pager);
         mHomeScreenViewPager.setAdapter(adapter);
         mHomeScreenViewPager.setOffscreenPageLimit(AppConstants.NUMBER_OF_HOME_SCREENS);
@@ -396,7 +400,7 @@ public class HomeScreenMainActivity extends FragmentActivity implements View.OnC
                 try {
                     wallpaperManager.clear();
                 } catch (IOException e) {
-                    Log.e(LOG_TAG, "Failed to clear wallpaper " + e);
+                    Log.e(TAG, "Failed to clear wallpaper " + e);
                 }
             } else {
                 getWindow().setBackgroundDrawable(new ClippedDrawable(wallpaper));
@@ -963,5 +967,61 @@ public class HomeScreenMainActivity extends FragmentActivity implements View.OnC
         }
     }
 
+    private HomeFragment findFragmentByPos(int pos) {
+        if (pos >= 0 || pos < adapter.getCount() -1) {
+            return (HomeFragment) adapter.getItem(pos);
+        }
+        return null;
+    }
+
+    // Dashboard listener implementation start region
+    @Override
+    public ImageView removeAppIconFromPage(int pagePos, int appIconId) {
+        Log.d(TAG, "removeAppIconFromPage() Remove AppIcon with id: " + appIconId + " from page at position: " + pagePos);
+
+        ImageView appIconView = null;
+        HomeFragment dashboardFragment = findFragmentByPos(pagePos);
+        if (dashboardFragment != null) {
+            appIconView = dashboardFragment.removeAppIconFromPage(appIconId);
+        } else {
+            Log.d(TAG, "removeAppIconFromPage() Invalid page position");
+        }
+
+        Log.d(TAG, "removeAppIconFromPage() Removed app icon is: " + appIconView);
+        return appIconView;
+    }
+
+    @Override
+    public void moveToPreviousPage(int currentPagePos) {
+        Log.d(TAG, "moveToPreviousPage() Move to previous page from current page position : " + currentPagePos);
+        int nextPos = currentPagePos - 1;
+        if (nextPos >= 0 && nextPos < adapter.getCount()) {
+            mHomeScreenViewPager.setCurrentItem(nextPos);
+            Log.d(TAG, "moveToPreviousPage() Successfully moved to next position");
+        } else {
+            Log.d(TAG, "moveToPreviousPage() Error moving to next position");
+        }
+    }
+
+    @Override
+    public void moveToNextPage(int currentPagePos) {
+        Log.d(TAG, "Move to next page from current page position : " + currentPagePos);
+        int nextPos = currentPagePos + 1;
+        if (nextPos >= 0 && nextPos < adapter.getCount()) {
+            mHomeScreenViewPager.setCurrentItem(nextPos);
+            Log.d(TAG, "moveToNextPage() Successfully moved to previous position");
+        } else {
+            Log.d(TAG, "moveToNextPage() Error moving to previous position");
+        }
+    }
+
+    @Override
+    public void clearIsOccupiedFlag(int pagePos, int cellId) {
+        HomeFragment fragment = findFragmentByPos(pagePos);
+        if (fragment != null) {
+            fragment.clearIsOccupiedFlag(cellId);
+        }
+    }
+    //endregion
 
 }

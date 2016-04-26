@@ -35,6 +35,7 @@ import android.widget.Toast;
 
 import com.evol.appUtils.AppConstants;
 import com.evol.appUtils.AppUtils;
+import com.evol.launcher_lib.TweakDashboardView;
 import com.evol.promotionalApp.DialogParentActivity;
 import com.evol.promotionalApp.PromotionalAppSharedPreferences;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -48,9 +49,11 @@ import java.util.TimerTask;
 /**
  * Created by katakam on 1/21/2016.
  */
-public class HomeScreenFragmentOne extends Fragment {
+public class HomeScreenFragmentOne extends HomeFragment {
 
     static final String TAG = "HomeScreenFragmentOne";
+
+
 
     ViewGroup mainlayout;
     private Context context;
@@ -70,26 +73,23 @@ public class HomeScreenFragmentOne extends Fragment {
 
 
     public static HomeScreenFragmentOne newInstance(Activity homeActivity, int position) {
-
         HomeScreenFragmentOne currentFragment = new HomeScreenFragmentOne();
         Bundle b = new Bundle();
-        b.putInt("MSG", position);
+        b.putInt(INTENT_ITEM_POSITION, position);
         currentFragment.setArguments(b);
         return currentFragment;
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
 
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.home_widget_host_fragment_layout_0, container, false);
 
         context = view.getContext();
-
         mAppWidgetManager = AppWidgetManager.getInstance(context);
         mAppWidgetHost = new LauncherAppWidgetHost(context, APPWIDGET_HOST_ID);
-
         loadViews(view);
         //addBroadcastReceiverForShortCut();
 
@@ -105,6 +105,8 @@ public class HomeScreenFragmentOne extends Fragment {
                 return false;
             }
         });
+
+        initDashboardViews(view);
     }
 
     private void addBroadcastReceiverForShortCut() {
@@ -415,12 +417,6 @@ public class HomeScreenFragmentOne extends Fragment {
             }
         }
         Toast.makeText(context, R.string.no_widgets_popup, Toast.LENGTH_SHORT).show();
-    }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getActivity().getMenuInflater();
-        inflater.inflate(R.menu.widget_menu, menu);
-        return true;
     }
 }
 
