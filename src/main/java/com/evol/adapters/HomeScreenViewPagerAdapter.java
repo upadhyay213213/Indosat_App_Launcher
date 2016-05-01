@@ -9,14 +9,12 @@ import com.evol.homeLauncher.HomeScreenFragmentOne;
 import com.evol.homeLauncher.HomeScreenFragmentThree;
 import com.evol.homeLauncher.HomeScreenMainActivity;
 import com.evol.homeLauncher.HomeScreenFragmentTwo;
-import com.viewpagerindicator.IconPagerAdapter;
 
 /**
  * Created by katakam on 1/20/2016.
  */
 public class HomeScreenViewPagerAdapter
-        extends FragmentPagerAdapter
-        implements IconPagerAdapter {
+        extends FragmentPagerAdapter {
 
 
     int mSize;
@@ -50,11 +48,4 @@ public class HomeScreenViewPagerAdapter
         } else
             return null;
     }
-
-    @Override
-    public int getIconResId(int index) {
-        return -1;
-    }
-
-
 }

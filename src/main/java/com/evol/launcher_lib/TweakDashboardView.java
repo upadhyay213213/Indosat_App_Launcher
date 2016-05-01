@@ -9,7 +9,6 @@ import android.graphics.Rect;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.DragEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.ImageView;
@@ -40,11 +39,8 @@ public class TweakDashboardView extends RelativeLayout {
 
     public interface IViewPagerCallbacks {
         void moveToNextPage(int currentPagePos);
-
         void moveToPreviousPage(int currentPagePos);
-
         ImageView removeAppIconFromPage(int pagePos, int appIconId);
-
         void clearIsOccupiedFlag(int pagePos, int cellId);
     }
 
@@ -131,9 +127,9 @@ public class TweakDashboardView extends RelativeLayout {
                 getContext(),
                 getWidth(),
                 getHeight(),
-                getLeft(),
+                getX(),
                 getRight(),
-                getTop(),
+                0.0f,
                 getBottom()
         );
         cellManipulator.printCellDetails();
@@ -183,24 +179,29 @@ public class TweakDashboardView extends RelativeLayout {
         imageViewCellContainer.setIsOccupied(true);
         addView(appIconImageView);
 
-        appIconImageView.setOnTouchListener(new AppIconTouchListener());
+        appIconImageView.setOnLongClickListener(new AppIconTouchListener());
+        appIconImageView.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String pkgName = (String) v.getTag();
+                getContext().startActivity(getContext().getPackageManager().getLaunchIntentForPackage(pkgName));
+            }
+        });
     }
 
-    private class AppIconTouchListener implements OnTouchListener {
+    private class AppIconTouchListener implements View.OnLongClickListener {
+
         @Override
-        public boolean onTouch(View v, MotionEvent event) {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                ClipData data = ClipData.newPlainText("", "");
-                DragShadowBuilder shadowBuilder = new DragShadowBuilder(v);
+        public boolean onLongClick(View v) {
+            ClipData data = ClipData.newPlainText("", "");
+            DragShadowBuilder shadowBuilder = new DragShadowBuilder(v);
 
-                DraggedCellLocalState localState = new DraggedCellLocalState();
-                localState.appIconId = v.getId();
-                localState.pagePos = mPagePos;
+            DraggedCellLocalState localState = new DraggedCellLocalState();
+            localState.appIconId = v.getId();
+            localState.pagePos = mPagePos;
 
-                v.startDrag(data, shadowBuilder, localState, 0);
-                return true;
-            }
-            return false;
+            v.startDrag(data, shadowBuilder, localState, 0);
+            return true;
         }
     }
 
@@ -221,6 +222,7 @@ public class TweakDashboardView extends RelativeLayout {
     }
 
     private void translateAppIconToLocation(View containerView, DragEvent event) {
+        cancelEndBoundaryRunnable();
         DraggedCellLocalState localState = (DraggedCellLocalState) event.getLocalState();
 
         Log.d(TAG, "translateAppIconToLocation() Drop Drag: LocalState is appIconId: " + localState.appIconId + " Start Page Pos: " + localState.pagePos + " current page pos: " + mPagePos);

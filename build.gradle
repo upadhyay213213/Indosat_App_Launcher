@@ -1,6 +1,5 @@
 buildscript {
     repositories {
-        maven { url "https://jitpack.io" }
         jcenter()
         mavenCentral()
     }
@@ -11,7 +10,6 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "https://jitpack.io" }
         mavenCentral()
         flatDir {
             dirs 'libs'
@@ -51,6 +49,4 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.0.+'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
 
-    // view pager indicator jake wharton
-    compile 'com.github.JakeWharton:ViewPagerIndicator:2.4.1'
 }

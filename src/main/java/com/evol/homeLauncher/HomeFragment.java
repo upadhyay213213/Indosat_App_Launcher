@@ -1,12 +1,11 @@
 package com.evol.homeLauncher;
 
 import android.app.Activity;
-import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -44,23 +43,16 @@ public class HomeFragment extends Fragment {
         inflater.inflate(R.menu.main, menu);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.add_icon) {
-            addAppIcon();
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void addAppIcon() {
+    public void addAppIcon(Drawable drawable, String pkgName) {
         ImageView imageView = new ImageView(getActivity());
-        imageView.setImageDrawable(getResources().getDrawable(R.mipmap.ic_launcher));
+        imageView.setImageDrawable(drawable);
         imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+        imageView.setTag(pkgName);
 
         mTweakDashboardView.addAppIcon(imageView);
     }
 
-    // activity-fragment communication methods start region
+    // region activity-fragment communication methods start region
     public ImageView removeAppIconFromPage(int appIconId) {
         if (mTweakDashboardView != null) {
             return mTweakDashboardView.removeAppIcon(appIconId);

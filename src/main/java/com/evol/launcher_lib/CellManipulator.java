@@ -147,7 +147,7 @@ public class CellManipulator {
 
     public void printCellDetails() {
         mDashboardData.printOuterCellsDetails();
-        mDashboardData.printInnerCellsDetails();
+        //mDashboardData.printInnerCellsDetails();
     }
 
     public void printViewDetails() {

@@ -154,7 +154,7 @@ public class HomeScreenFragmentOne extends HomeFragment {
         shortcut.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                final Dialog shortCutDialog = new Dialog(getContext(), android.R.style.Theme_Black_NoTitleBar);
+                final Dialog shortCutDialog = new Dialog(getActivity(), android.R.style.Theme_Black_NoTitleBar);
                 shortCutDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 shortCutDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 shortCutDialog.setContentView(R.layout.widget_long_press_options);
@@ -182,7 +182,7 @@ public class HomeScreenFragmentOne extends HomeFragment {
     }
 
     void showLongPressOptions() {
-        final Dialog dialog = new Dialog(getContext(), android.R.style.Theme_Black_NoTitleBar);
+        final Dialog dialog = new Dialog(getActivity(), android.R.style.Theme_Black_NoTitleBar);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
         dialog.setContentView(R.layout.home_screen_long_press_options);
@@ -307,7 +307,7 @@ public class HomeScreenFragmentOne extends HomeFragment {
         hostView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                final Dialog widgetDialog = new Dialog(getContext(), android.R.style.Theme_Black_NoTitleBar);
+                final Dialog widgetDialog = new Dialog(getActivity(), android.R.style.Theme_Black_NoTitleBar);
                 widgetDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 widgetDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
                 widgetDialog.setContentView(R.layout.widget_long_press_options);

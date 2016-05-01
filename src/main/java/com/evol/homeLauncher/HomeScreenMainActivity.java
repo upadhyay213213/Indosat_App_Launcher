@@ -898,6 +898,9 @@ public class HomeScreenMainActivity
         sendBroadcast(shortcutintent);
 
         mHomeScreenViewPager.setCurrentItem(2);
+
+        HomeFragment homeFragment = (HomeFragment) adapter.getItem(mHomeScreenViewPager.getCurrentItem());
+        homeFragment.addAppIcon(appInfo.icon, appInfo.getAppFullInfo().activityInfo.packageName);
     }
 
 

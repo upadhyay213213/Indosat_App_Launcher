@@ -91,8 +91,8 @@ public class Cell {
                 "width=" + cellRectF.width() +
                 ", height=" + cellRectF.height() +
                 ", startX=" + cellRectF.left +
-                ", startY=" + cellRectF.right +
-                ", endX=" + cellRectF.top +
+                ", endX=" + cellRectF.right +
+                ", startY=" + cellRectF.top +
                 ", endY=" + cellRectF.bottom +
                 ", centerX=" + cellRectF.centerX() +
                 ", centerY=" + cellRectF.centerY() +
